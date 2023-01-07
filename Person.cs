@@ -12,6 +12,21 @@ namespace AddressBook
     {
         public static List<Contact> person = new List<Contact>();
        public static Dictionary<string,List<Contact>> book = new Dictionary<string,List<Contact>>();
+        public List<Person> stateList;
+        public List<Person> cityList;
+        public List<Person> people;
+        public Person()
+        {
+            people = new List<Person>();
+        }
+        public string firstName;
+        public string lastName;
+        public string address;
+        public string city;
+        public string state;
+        public string zipCode;
+        public string phoneNum;
+        public string emailId;
 
         public static void CreateContact()
         {
@@ -174,6 +189,22 @@ namespace AddressBook
                 NewPerson();
             }
 
+        }
+        public static void StoreCityList(string key, List<Person> cityList, string city)
+        {
+            List<Person> CityList = cityList.FindAll(a =>a. city.ToLower() == city);
+            foreach (var i in CityList)
+            {
+                Console.WriteLine("Found person \"{0}\" in Address Book \"{1}\" , residing in City {2}", i.firstName, key, i.city);
+            }
+        }
+        public static void StoreStateList(string key, List<Person> stateList, string state)
+        {
+            List<Person> StateList = stateList.FindAll(x => x.state.ToLower() == state);
+            foreach (var i in StateList)
+            {
+                Console.WriteLine("Found person \"{0}\" in Address Book \"{1}\" , residing in State {2}", i.firstName, key, i.state);
+            }
         }
     }
 }
