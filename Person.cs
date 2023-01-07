@@ -112,5 +112,15 @@ namespace AddressBook
             }
 
         }
+        public static void AddMultipleContact()
+        {
+            Console.WriteLine("Enter the contact you want to add");
+            int contact = Convert.ToInt32(Console.ReadLine());
+            while(contact > 0)
+            {
+                AddMultipleContact();
+                contact--;
+            }
+        }
     }
 }
