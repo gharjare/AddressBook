@@ -7,9 +7,12 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
+
     public class Person
     {
         public static List<Contact> person = new List<Contact>();
+        Dictionary<string, List<Contact>> book = new Dictionary<string, List<Contact>>();
+
         public static void CreateContact()
         {
             Contact conatatct = new Contact();
@@ -35,8 +38,9 @@ namespace AddressBook
             Console.WriteLine("Enter phonenumber");
             conatatct.PhoneNumber = Console.ReadLine();
 
+            Console.WriteLine("Enter email");
+            conatatct.Email = Console.ReadLine();
             person.Add(conatatct);
-
         }
         public static void editContact()
         {
@@ -116,10 +120,41 @@ namespace AddressBook
         {
             Console.WriteLine("Enter the contact you want to add");
             int contact = Convert.ToInt32(Console.ReadLine());
-            while(contact > 0)
+            while (contact > 0)
             {
                 AddMultipleContact();
                 contact--;
+            }
+        }
+        public static void NewUser()
+        {
+            Console.WriteLine("Enter the Bookname: ");
+            string Bookname = Console.ReadLine();
+            Console.WriteLine("Enter The Number of Contacts To Add");
+            int number = int.Parse(Console.ReadLine());
+            while (number > 0)
+            {
+                number--;
+                CreateContact();
+            }
+            book.Add(Bookname,person.ToList());
+        }
+        public void DisplayList()
+        {
+            foreach (var pair in book.Keys)
+            {
+                Console.WriteLine("Address Book Name " + pair);
+                foreach (Contact data in book[pair])
+                {
+                    Console.WriteLine("First Name: " + data.FName);
+                    Console.WriteLine("Last Name: " + data.LName);
+                    Console.WriteLine("Address: " + data.Addresss);
+                    Console.WriteLine("City : " + data.City);
+                    Console.WriteLine("State: " + data.State);
+                    Console.WriteLine("Zip : " + data.Zip);
+                    Console.WriteLine("Phone Number: " + data.PhoneNumber);
+                    Console.WriteLine("EmailID: " + data.Email);
+                }
             }
         }
     }
