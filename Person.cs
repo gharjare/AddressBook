@@ -35,9 +35,8 @@ namespace AddressBook
             conatatct.PhoneNumber = Console.ReadLine();
 
             Console.WriteLine("Enter email");
-
             conatatct.Email = Console.ReadLine();
-
+            person.Add(conatatct);
         }
     }
 }
