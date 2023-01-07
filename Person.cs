@@ -11,7 +11,7 @@ namespace AddressBook
     public class Person
     {
         public static List<Contact> person = new List<Contact>();
-        Dictionary<string, List<Contact>> book = new Dictionary<string, List<Contact>>();
+       public static Dictionary<string,List<Contact>> book = new Dictionary<string,List<Contact>>();
 
         public static void CreateContact()
         {
@@ -126,7 +126,7 @@ namespace AddressBook
                 contact--;
             }
         }
-        public static void NewUser()
+        public static void NewPerson()
         {
             Console.WriteLine("Enter the Bookname: ");
             string Bookname = Console.ReadLine();
@@ -139,7 +139,7 @@ namespace AddressBook
             }
             book.Add(Bookname,person.ToList());
         }
-        public void DisplayList()
+        public static void PrintList()
         {
             foreach (var pair in book.Keys)
             {
@@ -156,6 +156,24 @@ namespace AddressBook
                     Console.WriteLine("EmailID: " + data.Email);
                 }
             }
+        }
+        public static void CheckDuplicate()
+        {
+            Console.WriteLine("enter the name to check: ");
+            string personName = Console.ReadLine();
+            Console.WriteLine("Enter phonenumber");
+            string pnumber = Console.ReadLine();
+            bool check = person.Any(x => x.FName == personName &&x.PhoneNumber == pnumber);
+            if (check)
+            {
+                Console.WriteLine("contact is present");
+            }
+            else
+            {
+                Console.WriteLine("Contact is not present");
+                NewPerson();
+            }
+
         }
     }
 }
